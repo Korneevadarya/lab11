@@ -41,7 +41,7 @@ class calendarapp:
             if int(month) > 12 or int(month) < 1:
                 messagebox.showerror("ошибка", "некорректный месяц.")
             # проверка корректности дня
-            elif (int(month) == 2 and int(day) > 29) or (int(day) > 31 or int(day) < 1):
+            elif (int(month) == 2 and int(day) > 29) or (int(day) > 31 or int(day) < 1) or (int(month)==4 and int(day) > 30) or (int(month)==5 and int(day) > 30) or (int(month)==9 and int(day) > 30) or (int(month)==11 and int(day) > 30):
                 messagebox.showerror("ошибка", "некорректный день.")
             else:
                 # сохранение сообщения в указанной дате
@@ -63,7 +63,7 @@ class calendarapp:
             if int(month) > 12 or int(month) < 1:
                 messagebox.showerror("ошибка", "некорректный месяц.")
             # проверка корректности дня
-            elif (int(month) == 2 and int(day) > 29) or (int(day) > 31 or int(day) < 1):
+            elif (int(month) == 2 and int(day) > 29) or (int(day) > 31 or int(day) < 1) or (int(month) == 4 and int(day) > 30) or (int(month) == 6 and int(day) > 30) or (int(month) == 9 and int(day) > 30) or (int(month) == 11 and int(day) > 30):
                 messagebox.showerror("ошибка", "некорректный день.")
             else:
                 # проверка наличия сообщения в указанной дате

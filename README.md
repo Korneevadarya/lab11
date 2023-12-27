@@ -51,12 +51,19 @@ class calendarapp:
         message = self.message_entry.get()
 
         if year and month and day and message:
-            # сохранение сообщения в указанной дате
-            date_key = f"{year},{month},{day}"
-            if date_key not in self.calendar:
-                self.calendar[date_key] = {}
-            self.calendar[date_key] = message
-            messagebox.showinfo("сообщение сохранено", "сообщение сохранено успешно.")
+            # проверка корректности месяца
+            if int(month) > 12 or int(month) < 1:
+                messagebox.showerror("ошибка", "некорректный месяц.")
+            # проверка корректности дня
+            elif (int(month) == 2 and int(day) > 29) or (int(day) > 31 or int(day) < 1) or (int(month)==4 and int(day) > 30) or (int(month)==5 and int(day) > 30) or (int(month)==9 and int(day) > 30) or (int(month)==11 and int(day) > 30):
+                messagebox.showerror("ошибка", "некорректный день.")
+            else:
+                # сохранение сообщения в указанной дате
+                date_key = f"{year},{month},{day}"
+                if date_key not in self.calendar:
+                    self.calendar[date_key] = {}
+                self.calendar[date_key] = message
+                messagebox.showinfo("сообщение сохранено", "сообщение сохранено успешно.")
         else:
             messagebox.showerror("ошибка", "пожалуйста, заполните все поля.")
 
@@ -66,13 +73,20 @@ class calendarapp:
         day = self.day_entry.get()
 
         if year and month and day:
-            # проверка наличия сообщения в указанной дате
-            date_key = f"{year},{month},{day}"
-            if date_key in self.calendar:
-                message = self.calendar[date_key]
-                messagebox.showinfo("сообщение", message)
+            # проверка корректности месяца
+            if int(month) > 12 or int(month) < 1:
+                messagebox.showerror("ошибка", "некорректный месяц.")
+            # проверка корректности дня
+            elif (int(month) == 2 and int(day) > 29) or (int(day) > 31 or int(day) < 1) or (int(month) == 4 and int(day) > 30) or (int(month) == 6 and int(day) > 30) or (int(month) == 9 and int(day) > 30) or (int(month) == 11 and int(day) > 30):
+                messagebox.showerror("ошибка", "некорректный день.")
             else:
-                messagebox.showwarning("сообщение не найдено", "сообщение не найдено для указанной даты.")
+                # проверка наличия сообщения в указанной дате
+                date_key = f"{year},{month},{day}"
+                if date_key in self.calendar:
+                    message = self.calendar[date_key]
+                    messagebox.showinfo("сообщение", message)
+                else:
+                    messagebox.showwarning("сообщение не найдено", "сообщение не найдено для указанной даты.")
         else:
             messagebox.showerror("ошибка", "пожалуйста, заполните все поля.")
 
